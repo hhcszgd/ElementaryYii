@@ -272,4 +272,114 @@ class TestController extends Controller
     function actionInfo(){
         echo phpinfo();
     }
+
+    function actionCreatePdo(){
+//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
+        try{
+            //方法1
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+            //方法2
+//            $pdo = new \PDO('uri:mysqlPdo.ini','root','Swift_2018');//需要mysqlPdo.ini文件
+            //方法3
+//            $pdo = new \PDO('uri:mysqlPdo','root','Swift_2018');//需配置php.ini文件
+        }catch (\PDOException $exception){
+            dir('database connecting failure' . $exception->getMessage());
+        }
+        print_r($pdo);
+        $pdo->setAttribute(\PDO::ATTR_AUTOCOMMIT , 1);//设置自动提交
+        print_r($pdo->getAttribute(\PDO::ATTR_SERVER_INFO));
+        print_r($pdo->getAttribute(\PDO::ATTR_CLIENT_VERSION));
+    }
+
+
+    function actionPdoQuery1(){
+//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
+        try{
+            //1 创建对象
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            dir('database connecting failure' . $exception->getMessage());
+        }
+        //2 执行查询,返回一个预处理对象
+            $sql = 'select * from student';
+            $result = $pdo->query($sql);
+        //3 从预处理对象中取出数据
+            $arrResult = $result->fetchAll();
+//        print_r($arrResult);
+//        print_r($arrResult[1]['name']);
+        foreach ($arrResult as $item ){
+            print_r($item['name'] . '<br>');
+        }
+        //4 释放
+        $pdo = null ;
+        $result = null ;
+    }
+    function actionPdoQuery2(){
+//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
+        try{
+            //1 创建对象
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            dir('database connecting failure' . $exception->getMessage());
+        }
+        //2 执行查询,返回一个预处理对象
+        $sql = 'select * from student';
+        foreach ($pdo->query($sql) as $item){
+            echo $item['name'] . 'xxxxxx' . "<br>";
+        }
+    }
+
+    function actionPdoInsert(){
+//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
+        try{
+            //1 创建对象
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            dir('database connecting failure' . $exception->getMessage());
+        }
+        //2 执行查询,返回一个预处理对象
+        $sql = 'insert into student (name , height , introduce ) values ("xiao guang",180 , "this is bad boy")';
+        $result = $pdo->exec($sql);
+        if ($result){
+            echo 'insert into successfully';
+        }else{
+            echo 'insert into failure ';
+        }
+    }
+
+    function actionPdoDelete(){
+//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
+        try{
+            //1 创建对象
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            dir('database connecting failure' . $exception->getMessage());
+        }
+        //2 执行查询,返回一个预处理对象
+        $sql = 'delete from student where id = 4';
+        $result = $pdo->exec($sql);
+        if ($result){
+            echo 'delete successfully';
+        }else{
+            echo 'delete failure ';
+        }
+    }
+
+    function actionPdoUpdate(){
+//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
+        try{
+            //1 创建对象
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            dir('database connecting failure' . $exception->getMessage());
+        }
+        //2 执行查询,返回一个预处理对象
+        $sql = 'update student set   name = "da guang" , height = 177 where id = 4';
+        $result = $pdo->exec($sql);
+        if ($result){
+            echo 'update successfully';
+        }else{
+            echo 'update failure ';
+        }
+    }
 }

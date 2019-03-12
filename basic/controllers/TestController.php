@@ -268,4 +268,8 @@ class TestController extends Controller
 
 
     }
+
+    function actionInfo(){
+        echo phpinfo();
+    }
 }

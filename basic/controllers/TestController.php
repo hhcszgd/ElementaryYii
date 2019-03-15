@@ -293,18 +293,19 @@ class TestController extends Controller
 
 
     function actionPdoQuery1(){
-//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
         try{
-            //1 创建对象
             $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
         }catch (\PDOException $exception){
-            dir('database connecting failure' . $exception->getMessage());
+            die('database connecting failure' . $exception->getMessage());
         }
         //2 执行查询,返回一个预处理对象
             $sql = 'select * from student';
             $result = $pdo->query($sql);
         //3 从预处理对象中取出数据
             $arrResult = $result->fetchAll();
+            $api = ['status'=>200,'message'=>'success','data'=>$arrResult];
+            $jsonStr = json_encode($api);
+            echo $jsonStr;
 //        print_r($arrResult);
 //        print_r($arrResult[1]['name']);
         foreach ($arrResult as $item ){
@@ -315,14 +316,11 @@ class TestController extends Controller
         $result = null ;
     }
     function actionPdoQuery2(){
-//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
         try{
-            //1 创建对象
             $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
         }catch (\PDOException $exception){
-            dir('database connecting failure' . $exception->getMessage());
+            die('database connecting failure' . $exception->getMessage());
         }
-        //2 执行查询,返回一个预处理对象
         $sql = 'select * from student';
         foreach ($pdo->query($sql) as $item){
             echo $item['name'] . 'xxxxxx' . "<br>";
@@ -330,14 +328,11 @@ class TestController extends Controller
     }
 
     function actionPdoInsert(){
-//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
         try{
-            //1 创建对象
             $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
         }catch (\PDOException $exception){
-            dir('database connecting failure' . $exception->getMessage());
+            die('database connecting failure' . $exception->getMessage());
         }
-        //2 执行查询,返回一个预处理对象
         $sql = 'insert into student (name , height , introduce ) values ("xiao guang",180 , "this is bad boy")';
         $result = $pdo->exec($sql);
         if ($result){
@@ -348,14 +343,11 @@ class TestController extends Controller
     }
 
     function actionPdoDelete(){
-//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
         try{
-            //1 创建对象
             $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
         }catch (\PDOException $exception){
-            dir('database connecting failure' . $exception->getMessage());
+            die('database connecting failure' . $exception->getMessage());
         }
-        //2 执行查询,返回一个预处理对象
         $sql = 'delete from student where id = 4';
         $result = $pdo->exec($sql);
         if ($result){
@@ -366,14 +358,11 @@ class TestController extends Controller
     }
 
     function actionPdoUpdate(){
-//        $mysqli = new \mysqli('localhost','root','Swift_2018','ddtest');
         try{
-            //1 创建对象
             $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
         }catch (\PDOException $exception){
-            dir('database connecting failure' . $exception->getMessage());
+            die('database connecting failure' . $exception->getMessage());
         }
-        //2 执行查询,返回一个预处理对象
         $sql = 'update student set   name = "da guang" , height = 177 where id = 4';
         $result = $pdo->exec($sql);
         if ($result){
@@ -382,4 +371,148 @@ class TestController extends Controller
             echo 'update failure ';
         }
     }
+
+    function actionPdoException(){
+        try{
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+//            \PDO::ERRMODE_WARNING
+            //按教程设置不好用
+            //$pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_WARNING);//设置错误报警,不做任何提示
+//            $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
+        }catch (\PDOException $exception){
+            die('database connecting failure' . $exception->getMessage());
+        }
+        $sql = 'insert into studentttttttt set name = "da hua" , height= 178 , introduce="this is a teacher"';
+        $result = $pdo->exec($sql);
+        if ($result){
+            echo ' successfully';
+        }else{
+            echo ($pdo->errorCode() . "<br>");
+            print_r( $pdo->errorInfo());
+        }
+    }
+
+    /**
+    PDO预处理方法
+    1 . prepare() // 用于执行查询sql语句,返回PDOStatement对象
+    2 . bindValue() // 将值绑定到对应的一个参数,返回布尔值
+    3 . bindParam() // 将参数绑定到形影的查询占位符上,返回布尔值
+    4 . bindColumen() // 用来匹配列名和一个指定的变量名
+    5 . excute() // 执行一个准备好了的预处理语句,返回布尔值
+    6 . rowCount() // 返回使用增删改查操作语句后受影响的行总数
+     */
+
+    //问号式预处理sql语句 , 共有三种绑定方式
+    function actionPdoPrepare1(){
+        //1.连接数据库
+        try{
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            die('database connecting failure' . $exception->getMessage());
+        }
+        //2.预处理的sql语句
+        $sql = 'insert into student (id, name , height , introduce)values(?,?,?,?)';
+        $result = $pdo->prepare($sql);
+//        //3.对?号的参数绑定(第一种绑定方式)
+//        $result->bindValue(1,null);//第一个问号对应的值(即id的值)
+//        $result->bindValue(2,"xiao疆");//第二个问号对应的值(即name的值)
+//        $result->bindValue(3,195);//第三个问号对应的值(即height的值)
+//        $result->bindValue(4,"this is a not bad boy");//第四个问号对应的值(即introduce的值)
+
+        //3.对?号的参数绑定(第二种绑定方式,)
+        $id = null ;
+        $name = "zhong jiang";
+        $height = 178.0;
+        $introduce = "this is a boy and girl ";
+        $result->bindParam(1,$id);//第一个问号对应的值(即id的值)
+        $result->bindParam(2,$name);//第二个问号对应的值(即name的值)
+        $result->bindParam(3,$height);//第三个问号对应的值(即height的值)
+        $result->bindParam(4,$introduce);//第四个问号对应的值(即introduce的值)
+
+
+
+        //4.执行
+//        $r = $result->execute(array(null,'中小将',183,'this is a fale'));//第三种绑定方式,直接写在执行参数里
+        $r = $result->execute();
+        echo $result->rowCount();//返回1表示执行成功
+        if ($r){
+            echo ' successfully';
+        }else{
+            echo ($pdo->errorCode() . "<br>");
+            print_r( $pdo->errorInfo());
+        }
+    }
+
+    //别名式预处理sql语句
+    function actionPdoPrepare2(){
+        //1.连接数据库
+        try{
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            die('database connecting failure' . $exception->getMessage());
+        }
+        //2.预处理的sql语句
+        $sql = 'insert into student (id, name , height , introduce)values(:id,:name,:height,:introduce)';//此处可以随便定义字段,对应就好
+        $result = $pdo->prepare($sql);
+//        //3.对?号的参数绑定(第一种绑定方式)
+//        $result->bindValue("id",null);//第一个问号对应的值(即id的值)
+//        $result->bindValue("name","xiao 小 疆");//第二个问号对应的值(即name的值)
+//        $result->bindValue("height",191);//第三个问号对应的值(即height的值)
+//        $result->bindValue("introduce","this is a not bad not bad boy");//第四个问号对应的值(即introduce的值)
+
+        //3.对?号的参数绑定(第二种绑定方式,)
+//        $id = null ;
+//        $name = "zhong jiang jiang";
+//        $height = 168.0;
+//        $introduce = "this is a boy and girl and baby ";
+//        $result->bindParam("id",$id);//第一个问号对应的值(即id的值)
+//        $result->bindParam("name",$name);//第二个问号对应的值(即name的值)
+//        $result->bindParam("height",$height);//第三个问号对应的值(即height的值)
+//        $result->bindParam("introduce",$introduce);//第四个问号对应的值(即introduce的值)
+
+
+
+        //4.执行
+        $r = $result->execute(array("id"=>null,"name"=>'中小将',"height"=>183,"introduce"=>'this is a fale'));//第三种绑定方式,直接写在执行参数里
+//        $r = $result->execute();
+        echo $result->rowCount();//返回1表示执行成功
+        if ($r){
+            echo ' successfully';
+        }else{
+            echo ($pdo->errorCode() . "<br>");
+            print_r( $pdo->errorInfo());
+        }
+
+    }
+
+    //采用预处理sql执行查询,并采用绑定结果方式输出
+    function actionPdoPrepare3(){
+        //1.连接数据库
+        try{
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+        }catch (\PDOException $exception){
+            die('database connecting failure' . $exception->getMessage());
+        }
+        //2.预处理的sql语句
+        $sql = 'select id , name , height , introduce  from student';
+        $result = $pdo->prepare($sql);
+        $result->execute();
+        $result->bindColumn(1,$id);
+        $result->bindColumn(2,$name);
+        $result->bindColumn("height",$height);
+        $result->bindColumn("introduce",$introduce);
+        while ($row=$result->fetch(\PDO::FETCH_COLUMN)){
+            echo"{$id}:{$name}:{$height}:{$introduce}<br>";
+        }
+//        if ($result){
+//            foreach ($result as $item){
+//                print_r($item);
+//            }
+//        }else{
+//            echo ($pdo->errorCode() . "<br>");
+//            print_r( $pdo->errorInfo());
+//        }
+    }
+
+
 }

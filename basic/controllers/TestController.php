@@ -514,5 +514,41 @@ class TestController extends Controller
 //        }
     }
 
+    /**
+    PDO事物处理
+     * tips : 数据表必须要用InnoDB类型(只有它才支持事物)
+     * ALTER TABLE `student` ENGINE = INNODB;
+     * 1 . begainTransaction()//开始一个事物(做一个回滚点)
+     * 2 . commit()//提交事物
+     * 3 . rollBack()//事物回滚操作
+     */
+    function actionPdoTransaction(){
+        //1.连接数据库
+        try{
+            $pdo = new \PDO('mysql:host=localhost;dbname=ddtest','root','Swift_2018');
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE , \PDO::ERRMODE_EXCEPTION);
+        }catch (\PDOException $exception){
+            die('database connecting failure' . $exception->getMessage());
+        }
+
+        //2.执行数据操作
+        try{
+            // 开始事物
+            $pdo->beginTransaction();
+            $sql = 'insert into student (id , name , height , introduce) values (? , ? ,? ,?)';
+            $stmt = $pdo->prepare($sql);
+            //传入参数
+            $stmt->execute(array(null , 'bigming2' , 198 , 'this is a big ming'));//插入一条,
+            $stmt->execute(array(null , 'bigming3' , 198 , 'this is a big ming'));//插入第二条,
+            $stmt->execute(array(1 , 'bigming4' , 198 , 'this is a big ming'));//插入第三条,
+            $pdo->commit();
+
+        }catch (\PDOException $exception){
+            $pdo->rollBack();
+            die('database operate failure' . $exception->getMessage());
+
+        }
+        print_r($pdo);
+    }
 
 }

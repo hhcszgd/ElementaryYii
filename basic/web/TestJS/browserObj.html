@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background: #00A000" >
+<!--<body onload="openWindowMethod()">-->
+<p id="showTime">will show time</p>
+<script>
+    //在 HTML 中, 全局变量是 window 对象: 所有数据变量,函数(包括自定义函数)都属于 window 对象。
+    var windowWidth = window.innerWidth
+    var windowHeight = window.innerHeight//页面可见范围的高度且不包括导航栏
+    window.document.write("screen width :" + windowWidth + "," + "screen height: " + windowHeight);
+   
+   
+   
+    function openWindowMethod() {
+        //window是一个全局对象,在任意打开的窗口都存在这个对象,调用它的方法和属性时 可以用window调用 , 也可直接写属性和方法
+        window.open('index.html' , "new page title" , "width=300,height=300,top=100,left=100,toolbar=no,menubar=no")
+        //open("index.html")//省略window
+    }
+
+    function closeWindowMethod() {
+        // window.close();//谷歌浏览器报错 Scripts may close only the windows that were opened by it
+    }
+    function openPicture() {
+        window.open('../b.jpg')
+    }
+
+
+    //记时事件:通过js 让一段代码每隔一个设定事件执行一次
+    //记时方法:1 setInterval() 间隔指定毫秒数 不听的执行指定代码
+                //clearInterval() 用于停止setInterval()方法执行的代码
+    //2 setTimeout() 暂停指定的毫秒数后执行指定的代码
+
+    var timer
+    function startTimer() {
+        //setInterval是window的一个方法,包含两个参数,第一个是将要调用的函数,第二个是每隔多久(毫秒)调
+         timer = window.setInterval(function () {
+            window.updateView()//这里加不加window都行
+        } , 1000)
+    }
+    function updateView() {
+        var date = new Date()
+        var timeString = date.toLocaleTimeString()
+        window.document.getElementById("showTime").innerHTML = timeString
+    }
+    function stopTimer() {
+        window.clearInterval(timer)
+    }
+
+    var timeOut
+    function performAfterSpacifyTime() {
+        timeOut = window.setTimeout(function () {
+            alert("hello world");// 也可以递归调用实现setInterval的功能,用clearTimeout来终止
+        } , 3000)
+    }
+    function stopTimeout() {
+        window.clearTimeout(timeOut)
+    }
+
+
+
+    // history 对象 :
+    //window.history 对象包含浏览器的历史(url)的集合
+    // history 方法;
+    //history.back()
+    //history.forward
+    //history.go() 进入历史中的某个页面
+
+</script>
+
+<div>
+    <button onclick="openWindowMethod()">open index page </button>
+</div>
+<div>
+    <button onclick="closeWindowMethod()">close index page </button>
+</div>
+<div>
+    <button onclick="openPicture()">see a beautiful girl🤪</button>
+</div>
+<div>
+    <button onclick="startTimer()">start timer </button>
+</div>
+<div>
+    <button onclick="stopTimer()">stop timer </button>
+</div>
+
+<div>
+    <button onclick="performAfterSpacifyTime()">alert after 3 second </button>
+</div>
+</body>
+</html>

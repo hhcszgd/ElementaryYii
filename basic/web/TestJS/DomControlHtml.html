@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p name="pName">p element</p>
+<a id="aTag" , title="获取a标签的属性" , style="background-color: #008800">getAttributeOfElement</a>
+<div>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+</div>
+<div>
+    <button onclick="getPElementValue()">getPElementValue</button>
+</div>
+<div>
+    <button onclick="getAttributeOfElement()">getAttributeOfElement</button>
+</div>
+<div>
+    <button onclick="setAttributeOfElement()">setAttributeOfElement</button>
+</div>
+<div>
+    <button onclick="getChildNodes()">getChildNodes</button>
+</div>
+
+<div>
+    <p id="pElementID" onclick="getParentNode()">p element </p>
+</div>
+<div id="testDiv1">
+    <button id="testButton1" style="background-color: #0e84b5" onclick="testInsertBefore()">test insert before</button>
+    <button style="background-color: #008800" onclick="testRemoveNode()">remove</button>
+</div>
+<div>
+    <p  onclick="createNode()">create node </p>
+</div>
+<script>
+    /**
+     .getElementsByName() //获取name,如获取name为pName的对应的标签集合:getElementsByName("pName")
+     .getElementsByTagName() //获取元素,如获取所以P标签的集合:getElementsByName("p")
+     .getAttribute() //获取元素属性
+     .setAttribute() // 设置元素属性
+     .childNodes() //访问子节点
+     .parentNode() //访问父节点
+     .createElement() //创建元素节点
+     .createTextNode()//创建文本节点
+     .insertBefore()//插入节点
+     .removeChild()//删除节点
+     .offsetHeight //网页尺寸(不包含滚动条)
+     .scrollHeight//网页尺寸(包含滚动条)
+
+     */
+    function getPElementValue() {
+        var resuts = window.document.getElementsByName("pName")
+        alert(resuts[0].innerHTML)
+        resuts[0].innerHTML = "world"
+    }
+    function getAttributeOfElement() {
+        var aNode = document.getElementById('aTag')
+        var attribures = aNode.getAttribute('title')//也可以获取id等
+        alert(attribures)//弹出:获取a标签的属性
+    }
+
+    function setAttributeOfElement() {//动态设置背景色
+        var aNode = document.getElementById('aTag')
+        var attribures = aNode.setAttribute('style',"background-color: #AA2AA2")//也可以获取id等
+    }
+    function getChildNodes() {
+        var ulNodes = document.getElementsByTagName('ul')//得到ul标签集合
+        var firstulNode = ulNodes[0]//得到第一个ul标签
+        var chileNodes = firstulNode.childNodes;
+        // alert(chileNodes.length)//包含ul自己和每一个子标签后的换行符
+        alert(chileNodes[2].nodeName)
+    }
+    function getParentNode() {
+        var pElement = document.getElementById('pElementID')
+        var div = pElement.parentNode
+        alert(div.nodeName)
+    }
+    function createNode() {
+        var body = document.body
+        var input = document.createElement("input")
+        input.type = "button"
+        input.value = "this is a button"
+        body.appendChild(input)
+    }
+    function testInsertBefore() {
+        var div = document.getElementById("testDiv1")
+        var button = document.getElementById("testButton1")
+
+        var input = document.createElement("input")
+        input.type = "button"
+        input.value = "to be insert dynamicly"
+        input.id = "toBeEditDynamicly"
+        // document.body.insertBefore(input , div)
+        div.insertBefore(input , button)
+    }
+    function testRemoveNode() {
+        var div = document.getElementById("testDiv1")
+        var button = document.getElementById("toBeEditDynamicly")
+
+        div.removeChild(div.childNodes[0])
+        // div.removeChild(button)
+    }
+    function getSize() {
+        var visiableWidth = document.documentElement.offsetWidth || document.body.offsetWidth//兼容所有浏览器
+        var visiableHeight = document.documentElement.offsetHeight
+        var scrollHeight = document.body.scrollHeight
+        var scrollWidth = document.body.scrollWidth
+        alert(visiableHeight+ "    "  + visiableWidth)
+    }
+</script>
+</body>
+</html>

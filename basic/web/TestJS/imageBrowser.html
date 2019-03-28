@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>image browser</title>
+</head>
+<body>
+<div>
+    <button onclick="nextImage()"> next </button>
+    <button onclick="priviousImage()"> provious </button>
+</div>
+
+<img id="image" src="../Medias/1.jpg" width="220" >
+<script>
+    var index = 1
+    function priviousImage() {
+        index -= 1
+        window.document.getElementById("image").src = "../Medias/" + index + ".jpg"
+    }
+    function nextImage() {
+        index += 1
+        window.document.getElementById("image").src = "../Medias/" + index + ".jpg"
+    }
+</script>
+
+</body>
+</html>

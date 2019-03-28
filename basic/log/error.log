@@ -86,3 +86,4 @@ Stack trace:
 #0 /Users/wy/MySource/project/githubProject/PHP/ddyiiyii/basic/web/studentCMS/action.php(44): PDO->exec('update student ...')
 #1 {main}
   thrown in /Users/wy/MySource/project/githubProject/PHP/ddyiiyii/basic/web/studentCMS/action.php on line 44" while reading response header from upstream, client: 127.0.0.1, server: ddyiiyii.com, request: "POST /studentCMS/action.php?action=edit HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "ddyiiyii.com", referrer: "http://ddyiiyii.com/studentCMS/edit.php?id=2"
+2019/03/28 11:23:05 [error] 450#0: *3 kevent() reported that connect() failed (61: Connection refused) while connecting to upstream, client: 127.0.0.1, server: ddyiiyii.com, request: "GET /index.php?r=test/pdo-transaction HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "ddyiiyii.com"

@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>index of testJS</title>
 </head>
-<body>
+<body onload="showHistoryCount()">
+<script>
+
+    function showHistoryCount(){
+        // alert(window.history.length)
+        console.log(window.history.length)
+    }
+    function goback() {
+        window.history.back()
+    }
+
+</script>
+
 <p>this is index page</p>
+
+<button onclick="goback()">go backk</button>
+<a href="testGo.html"> go to testgo page </a>
 </body>
 </html>

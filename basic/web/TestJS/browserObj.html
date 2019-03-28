@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>object of browser</title>
 </head>
-<body style="background: #00A000" >
+<body style="background: #00A000" onload="showHistoryCount()">
 <!--<body onload="openWindowMethod()">-->
 <p id="showTime">will show time</p>
 <script>
+    function showHistoryCount(){
+        // alert(window.history.length)
+        console.log(window.history.length)
+    }
+
     //在 HTML 中, 全局变量是 window 对象: 所有数据变量,函数(包括自定义函数)都属于 window 对象。
     var windowWidth = window.innerWidth
     var windowHeight = window.innerHeight//页面可见范围的高度且不包括导航栏
@@ -25,7 +30,7 @@
         // window.close();//谷歌浏览器报错 Scripts may close only the windows that were opened by it
     }
     function openPicture() {
-        window.open('../b.jpg')
+        window.open('imageBrowser.html')
     }
 
 
@@ -68,6 +73,56 @@
     //history.back()
     //history.forward
     //history.go() 进入历史中的某个页面
+    function goforward() {
+        window.history.forward()
+    }
+
+
+    //location 对象
+    //window.location 对象获取当前页面的地址(url) , 并把浏览器重定向到新的页面
+    //location对象的属性
+    //location.hostname 返回web主机的域名
+    //location.pathname 返回当前页面的路径和文件名
+    //location.port 返回web主机的端口
+    //location.protocol 返回所使用的web协议(http://或https://)
+    //location.href 返回当前页面的url
+    //location.assign() 加载新的文档
+
+
+    function showParaOfLocation() {
+        console.log("hostName:" + location.hostname)
+        console.log("pathname:" + location.pathname)
+        console.log("port:" + location.port)
+        console.log("protocol:" + location.protocol)
+        console.log("href:" + location.href)
+        /*
+        * hostName:ddyiiyii.com
+          browserObj.html:94 pathname:/testJS/browserObj.html
+          browserObj.html:95 port:
+          browserObj.html:96 protocol:http:
+          browserObj.html:97 href:http://ddyiiyii.com/testJS/browserObj.html
+        * */
+    }
+
+    function jumpByLocationAssign() {
+        location.assign("https://www.baidu.com/")
+    }
+
+
+    //screen对象
+    //window.screen对象包含 有关用户屏幕信息
+    //screen属性
+    //screen.availWidth 可用的屏幕宽度
+    //screen.availHeight 可用的屏幕的高度
+    //screen.Height 屏幕的高度
+    //screen.Width 屏幕的高度
+    //都是可见范围的宽高
+    function showScreenParas() {
+        console.log("availWidth:" + screen.availWidth)
+        console.log("availHeight:" + screen.availHeight)
+        console.log("width:" + screen.width)
+        console.log("height:" + screen.height)
+    }
 
 </script>
 
@@ -90,5 +145,22 @@
 <div>
     <button onclick="performAfterSpacifyTime()">alert after 3 second </button>
 </div>
+<div>
+    <button onclick="goforward()">go forward</button>
+</div>
+<div>
+    <button onclick="showParaOfLocation()">showParaOfLocation at console</button>
+</div>
+<div>
+    <button onclick="jumpByLocationAssign()">jump by location.assign</button>
+</div>
+
+<div>
+    <button onclick="showScreenParas()">showScreenParas</button>
+</div>
+<div>
+    <a href="index.html">go index page</a>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div">
+    <!--//html 事件处理-->
+    <button id="btn1" onclick="demo()">button</button>
+</div>
+<script>
+    function demo() {
+        alert("hello html event ")
+    }
+</script>
+
+
+
+<button id="btn2"> button2 </button>
+<script>//<!-- dom 0级事件处理 -->
+    var btn2 = document.getElementById("btn2")
+    btn2.onclick = function () {
+        alert("hello DOM 0级时间处理程序1")
+
+    }
+btn2.onclick = function () {//第一个事件会被覆盖,只有最后一次事件会被执行
+    alert("hello DOM 0级时间处理程序2")
+
+}
+</script>
+
+
+<div>
+    <button id="btn3"> button3 </button>
+</div>
+<script>//<!-- dom 2级事件处理 -->
+//addEventListener('事件名' ,"事件处理函数","布尔值")
+//布尔值为true:事件捕获
+//布尔值为false:事件冒牌
+//removeEventListener()
+var btn3 = document.getElementById("btn3")
+btn3.addEventListener("click" , demo1)
+function demo1() {//事件会依次执行,不会覆盖
+    alert(" dom 2级事件处理1")
+}
+btn3.addEventListener("click" ,demo2)
+function demo2() {//事件会依次执行
+    alert(" dom 2级事件处理2")
+    btn3.removeEventListener('click' , demo1)
+}
+
+</script>
+
+</body>
+</html>

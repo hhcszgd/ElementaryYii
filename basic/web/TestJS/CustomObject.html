@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>custom object</title>
+</head>
+<body>
+
+<script>//way 1
+    var person = new Object();
+    person.name = "hhcszgd"
+    person.age = 20
+    person.job = "it"
+    person.home = 'luyi'
+    document.write(person.name + person.age + person.job + person.home + "</br>")
+
+</script>
+
+<script>//way 2
+    var person2 = {
+        name :"hhcszgd2",
+        age : 202,
+        job : "it2",
+        home : 'luyi2'
+    }
+    person2.run = function run( place  ){
+        document.write("run" + " to " + place + "</br>")
+    }
+// person2.run = function ( place  ){
+//     document.write("run" + " to " + place + "</br>")
+// }
+    document.write(person2.name + person2.age + person2.job + person2.home + "</br>")
+    person2.run("school")
+</script>
+
+
+<script>//way 3
+    function createPerson() {
+        var person2 = {
+            name :"hhcszgd2",
+            age : 202,
+            job : "it2",
+            home : 'luyi2'
+        }
+        person2.run = function ( place  ){
+            alert("run" + " to " + place)
+        }
+        return person2
+    }
+
+    var p = createPerson()
+    p.name = "fitz"
+    document.write(p.name + p.age + p.job + p.home + "___</br>")
+</script>
+
+<script>//way 4
+
+function Person(name , age , job ,home = null )  {
+    this.name = name
+    this.age = age
+    this.job = job
+    this.home = home
+}
+
+var p = new  Person('jame' , 20 , 'sence')
+document.write(p.name + p.age + p.job + p.home + "</br>")
+</script>
+<script>//way 5
+
+function Person(name , age , job ,home = "earth" )  {
+    var obj = new Object()
+    obj.name = name
+    obj.age = age
+    obj.job = job
+    obj.home = home
+    return obj
+}
+
+var p = new  Person('corfil' , 20 , 'sence')
+document.write(p.name + p.age + p.job + p.home + "</br>")
+</script>
+</body>
+</html>

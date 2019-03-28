@@ -38,6 +38,9 @@
 <div>
     <p  onclick="createNode()">create node </p>
 </div>
+<div>
+    <button onclick="interActiveWithIOS()">interActiveWithIOS</button>
+</div>
 <script>
     /**
      .getElementsByName() //获取name,如获取name为pName的对应的标签集合:getElementsByName("pName")
@@ -112,6 +115,18 @@
         var scrollHeight = document.body.scrollHeight
         var scrollWidth = document.body.scrollWidth
         alert(visiableHeight+ "    "  + visiableWidth)
+    }
+    function interActiveWithIOS() {
+        window.webkit.messageHandlers.hhcszgd.postMessage(2)
+        /*
+        * self.webView.configuration.userContentController.add(self , name : "hhcszgd")//传值的关键 , 释放的时候记得移除
+        * //MARK:接受js传过来的参数
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        mylog(message.body)
+        mylog(message.name)
+        self.analysisTheDateFromJS(message:message)
+    }
+        * */
     }
 </script>
 </body>

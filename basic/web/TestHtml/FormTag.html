@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+</head>
+
+<!--<form>:表单-->
+<!--<input>:输入域-->
+<!--<textarea>:文本域-->
+<!--<label>:控制标签-->
+<!--<fieldset>:定义域-->
+<!--<legend>:域的标题-->
+<!--<select>:选择列表-->
+<!--<optgroup>:选项组-->
+<!--<option>:下拉列表中的选项-->
+<!--<button>:按钮-->
+<body>
+    <form>
+        用户名:
+        <input type="text" >
+        <br/>
+        密 码 :
+        <input type="password">
+    </form>
+<!--常用的表单-->
+    <!--1 , 复选框-->
+    <form>
+        <br/>
+        请做出选择 :
+        <br/>
+        复选框1
+        <input type="checkbox" >
+        <br/>
+        复选框2
+        <input type="checkbox" >
+    </form>
+    <!--2 , 单选按钮-->
+    <form>
+        <br/>
+        你的性别:
+        <!--所有name为sex的单选框,只有一个可以被选中-->
+        男<input type="radio" name="sex" >
+        女<input type="radio" name="sex">
+    </form>
+    <!--3 , 下拉列表-->
+    <form>
+        <br/>
+        选择常用网站:
+        <select>
+            <option>http://www.baidu.com</option>
+            <option>http://www.sina.cn</option>
+            <option>http://www.google.com</option>
+        </select>
+    </form>
+    <!--4 , 文本域-->
+    <textarea cols="30" rows="10" placeholder="填写个人信息"></textarea>
+    <!--5 , 创建按钮-->
+    <form>
+        <br/>
+        <input type="button" value="this is a button" onclick="xxx()">
+    </form>
+    <!--6 , 提交-->
+    <form>
+        <br/>
+        <input type="submit" value="submit" onclick="xxx()">
+    </form>
+
+
+
+
+<!--提交数据到php-->
+    <br/>
+    提交数据到php :
+    <br/>
+
+    <form action="../TestPHP/TestForm.php" method="post">
+        用户名:
+        <input type="text" name="username">
+        <br/>
+        密 码 :
+        <input type="password" name="passcode">
+        <br/>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

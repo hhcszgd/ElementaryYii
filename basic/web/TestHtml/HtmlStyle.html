@@ -1,0 +1,53 @@
+
+<!--标签::::-->
+<!--<style>:样式定义-->
+<!--<link>:资源引用-->
+
+<!--属性::::-->
+<!--rel="stylesheet" : 外部样式表-->
+<!--type="text/css" : 引入文档的类型-->
+<!--margin-left : 边距-->
+
+<!--三种样式表插入方法::::-->
+<!--1外部样式表:::-->
+<!--<link rel="stylesheet" type="text/css" href="mystyle.css"> -->
+
+<!--2内部样式表:::-->
+<!--
+<style type="text/css">
+body{
+    background-color:red;
+}
+p{
+    margin-left:20px;
+}
+</style>
+-->
+
+<!--3内嵌样式表:::-->
+<!--<p style="color:red">-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--1外部样式表:::-->
+    <!--<link rel="stylesheet" type="text/css" href="../TestCSS/TestCSS.css">-->
+
+    <!--2内部样式表:::-->
+    <style type="text/css">
+    body{
+        background-color:red;
+    }
+    p{
+        margin-left:120px;
+        color: yellow;
+    }
+    </style>
+    </head>
+    <body>
+    <p>test p tag</p>
+    <!--3内嵌样式表:::-->
+    <h1 style="color: #77ee77">test p tag</h1>
+    </body>
+    </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>块元素</title>
+</head>
+<style type="text/css">
+    /*   id 选择器 : #   */
+    #div1 a{
+             color: red ;
+         }
+    #div1 b{
+        color: green ;
+    }
+    span{
+        color: cyan;
+    }
+</style>
+<!--1 , html块儿元素-->
+<!--块元素在显示时,通常会以新行开始,如<h1> , <p> , <ul>-->
+<!--2 , html内联元素-->
+<!--内联元素通常不会以新行开始, 如 : <b> , <a> , <img> -->
+<!--3 , html <div>元素-->
+<!--<div>元素也被称为块元素,其主要是组合html元素的容器-->
+<!--4 , html <span>元素-->
+<!--<span>元素是内联元素,可作为文本的容器-->
+<body>
+<!--块元素-->
+    <p>this is a p element</p>
+    <h1>this is a h1 element</h1>
+    <div>this is a div element , inside of this element will break line , even span element</div>
+
+<!--内联元素-->
+    <b>this is a b element</b>
+    <a>this is a element</a>
+    <img src="../medias/8.jpg" width="200">
+<!--嵌套使用-->
+<div id="div1">
+    <a>a element in div . </a>
+    <b>a element in div</b>
+</div>
+<div><img src="../medias/8.jpg"></div>
+<div><b>b element in div</b></div>
+<div>
+    <p>I know <span>Pitter</span> is a evil boy</p>
+</div>
+</body>
+</html>

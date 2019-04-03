@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom event listener </title>
+</head>
+<!--  给特定的标签 添加事件句柄方法 : addEventListener  -->
+<!--  给特定的标签 移除事件句柄方法 : removeEventListener  -->
+<body>
+    <!--<p id="pid">hello</p>-->
+    <button id="button1id">button1</button>
+    <button id="button2id">button2</button>
+    <script>
+        document.getElementById("button1id").addEventListener("click",function () {
+            alert("hello")
+
+        });
+        document.getElementById("button2id").addEventListener("click",demo1)
+        function demo1() {
+            alert("just alert one time");
+            document.getElementById("button2id").removeEventListener("click" , demo1)
+        }
+    </script>
+</body>
+<script>
+    // function demo1() {
+    //     alert("just alert one time");
+    //     // document.getElementById("button2id").removeEventListener("click" , demo1)
+    // }
+</script>
+</html>

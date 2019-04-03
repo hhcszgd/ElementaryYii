@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="pid" style="color: red;">this text will be covered</p>
+    <button onclick="cover()">click and replace p tag content</button>
+    <!--此种形式会与其他标签同时加载-->
+    <script>
+        document.write("js text")
+    </script>
+    <button onclick="getTextOfPtag()">get content text of p tag </button>
+    <button onclick="changeTextcolorOfP()">change text color of p tag </button>
+</body>
+<script>
+    //dom 操作html
+    //1 改变html输出流 : document.write()
+    //    注意:绝对不要在文档加载完成之后使用document.write() , 这样会覆盖该文档
+    //2 寻找元素
+    //  通过id找到html元素
+    //  通过标签名找到html元素
+    //3 改变html元素内容
+    //  使用属性 : innerHTML
+    //4 改变html元素的属性
+    //  使用属性 : attribute 如 : pTag.style.color = "green"
+    function cover() {
+        document.write("show js text after click")
+    }
+    function getTextOfPtag() {
+        var ptag = document.getElementById("pid")
+        alert(ptag.innerText)
+        // ptag.innerText = "change by js "
+        ptag.innerHTML = "change by js "
+    }
+    function _getElementByID() {
+        var ptag = document.getElementById("pid")//结果是一个对象
+    }
+    function _getElementByTagname() {
+        var ptags = document.getElementsByTagName("p")//结果也是一个对象,当页面有多个p标签时,获取第一个遇到的p标签
+    }
+    function changeTextcolorOfP() {
+        // alert(3)
+        var ptag = document.getElementById("pid")
+        //两种方式都行
+        // ptag.setAttribute("style" , "color:#0000ff")
+        ptag.style.color = "green"
+    }
+</script>
+</html>

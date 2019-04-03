@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>change CSS by dom</title>
+    <!--<link rel="stylesheet" type="text/css" href="../TestCSS/TestCSS.css">-->
+    <style type="text/css" >
+        .div1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<!--语法:::-->
+<!--  document.getElementById("id").style.property = new style  -->
+<body>
+    <div id="div1" class="div1">
+        hello world
+
+    </div>
+    <button onclick="demo()">change attribute</button>
+</body>
+<script>
+    function demo() {
+        document.getElementById("div1").style.backgroundColor = "blue";
+        document.getElementById("div1").style.color = "yellow";
+    }
+</script>
+</html>

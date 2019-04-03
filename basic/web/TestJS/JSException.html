@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js的异常捕获</title>
+</head>
+<!--通过try{}catch(error){}   来捕获一个错误-->
+<!--通过throw 来自定义一个错误-->
+<body>
+    <form>
+        <input id="textfield" type="text">
+        <br/>
+        <input id="button" type="button" onclick="testThrow()" value="testThrow">
+        <br/>
+    </form>
+    <br/>
+    <button onclick="testTryCatch()">test try catch</button>
+    <br/>
+    <!--<button onclick="testThrow()">test throw</button>-->
+</body>
+
+<script>
+    function testTryCatch() {
+        try{
+            // let str = "hello world"
+            alert(str);
+        }catch (e) {
+            alert("出错了 : " + e)
+        }
+
+    }
+
+    function testThrow() {
+        var inputedText = document.getElementById("textfield").value
+
+        try {
+            let str = judgeText(inputedText)
+            alert("输入正常 : " + str )
+        }catch (e) {
+            alert("出错了 : " + e)
+        }
+    }
+    function judgeText(text) {
+                if (text.length > 0){
+                    return text
+                } else{
+                    throw 'please input something'
+                }
+    }
+    // function testThrow() {
+    //     try {
+    //         var inputedText = document.getElementById("textfield").value
+    //         if (inputedText.length > 0){
+    //             alert(inputedText)
+    //         } else{
+    //             throw 'please input something'
+    //         }
+    //     }catch (e) {
+    //         alert("出错了 : " + e)
+    //     }
+    // }
+</script>
+</html>

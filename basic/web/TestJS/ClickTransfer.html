@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            margin: 0px;
+            background-color: #77ee77;
+        }
+        #firstDiv{
+            background-color: yellow;
+            width: 444px;
+            height: 333px;
+        }
+        #secondDiv{
+            background-color: #6676FF;
+            width: 333px;
+            height: 222px;
+        }
+    </style>
+</head>
+<body bgcolor="#00ffff" onclick="bodyClick()">
+    body
+    <!--<div id="firstDiv" style="background-color: green  ; width:200px ; height: 200px;" >-->
+    <div id="firstDiv"  onclick="firstDivClick()">
+        firstDiv
+        <div id="secondDiv"  onclick="secondDivClick()">
+            secondDiv
+        </div>
+    </div>
+</body>
+<script>
+    function bodyClick() {
+        alert("body Click ")
+    }
+    function firstDivClick() {
+        alert("firstDiv Click ")
+        event.stopPropagation()//阻止点击事件传递到body , 即bodyClick()函数不会被调用
+    }
+    function secondDivClick() {
+        alert("secondDiv Click ")
+    }
+</script>
+</html>

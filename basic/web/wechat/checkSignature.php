@@ -21,9 +21,9 @@
     print_r(" tmpStr1 : {$tmpStr1}" );
     echo "xxxxxx";
     if( $signature == $tmpStr1){
-        echo $echostr;
+        return $echostr;
     }else{
-        echo "出错了";
+        return "failure";
     }
 
 

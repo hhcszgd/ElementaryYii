@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wy
- * Date: 2019/4/4
- * Time: 14:36
- */
 
-private function checkSignature()
+
+ function checkSignature()
 {
     $signature = _GET["signature"];
     $timestamp = _GET["timestamp"];
@@ -25,4 +20,3 @@ private function checkSignature()
 }
 checkSignature();
 
-?>

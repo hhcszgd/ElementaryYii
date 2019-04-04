@@ -18,10 +18,12 @@ $tmpStr1=sha1( $tmpStr );
 //print_r(" tmpStr : {$tmpStr}" );
 //print_r(" tmpStr1 : {$tmpStr1}" );
 //echo "xxxxxx";
-if( $signature == $tmpStr1){
-    return $echostr;
+if( $signature==$tmpStr1){
+//    return $echostr;
+    echo $echostr;
 }else{
-    echo "sssssss";
-    return "failure";
+    return "ss";
+//    echo "sssssss";
+//    return "failure";
 }
 ?>

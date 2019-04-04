@@ -6,12 +6,12 @@
     $timestamp=$_GET["timestamp"];
     $nonce=$_GET["nonce"];
     $token="hhcszgd";
-    $echostr=$_GET["echostr"];
+    $echostr=$_GET['echostr'];
     $tmpArr=array($token , $timestamp, $nonce);
     sort($tmpArr , 2);
     $tmpStr=implode( $tmpArr );
     $tmpStr1=sha1( $tmpStr );
-
+print_r(" echostr:{$echostr} "  );
     print_r(" signature:{$signature} "  );
     print_r(" timestamp:{$timestamp} "  );
     print_r( " nonce : {$nonce}"  );
@@ -23,6 +23,7 @@
     if( $signature == $tmpStr1){
         return $echostr;
     }else{
+        echo "sssssss";
         return "failure";
     }
 

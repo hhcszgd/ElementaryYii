@@ -11,13 +11,13 @@
     sort($tmpArr);
     $tmpStr = implode( $tmpArr );
     $tmpStr1 = sha1( $tmpStr );
-    print_r(" signature: " . $signature);
-    print_r(" timestamp: " . $timestamp);
-    print_r( " nonce : " . $nonce);
-    print_r(" token:" . $token);
-    print_r(" tmpArr : " . $tmpArr);
-    print_r(" tmpStr : " . $tmpStr);
-    print_r(" tmpStr1 : " . $tmpStr1);
+    print_r(" signature:{$signature} "  );
+    print_r(" timestamp:{$timestamp} "  );
+    print_r( " nonce : {$nonce}"  );
+    print_r(" token: {$token}"  );
+    print_r(" tmpArr : {$tmpArr}"  );
+    print_r(" tmpStr : {$tmpStr}" );
+    print_r(" tmpStr1 : {$tmpStr1}" );
     if( $signature == $tmpStr1){
         return _GET["echostr"];
     }else{

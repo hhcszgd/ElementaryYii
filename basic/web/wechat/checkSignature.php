@@ -8,15 +8,16 @@
     $nonce  = _GET["nonce"];
     $token = "hhcszgd";
     $tmpArr = array($token , $timestamp, $nonce);
-    sort($tmpArr, SORT_STRING);
+    sort($tmpArr);
     $tmpStr = implode( $tmpArr );
-    $tmpStr = sha1( $tmpStr );
-
-    if( $signature == $tmpStr){
-        return _GET["echostr"];;
+    $tmpStr1 = sha1( $tmpStr );
+    print_r($tmpStr1);
+    if( $signature == $tmpStr1){
+        return _GET["echostr"];
     }else{
         return "";
     }
 }
 checkSignature();
 
+//http://101.200.45.131/wechat/checkSignature.php?signature=4fb62c5f431613dd83f5da66c849ca9e6b90aece&echostr=7019144854469720927&timestamp=1554362711&nonce=522026408

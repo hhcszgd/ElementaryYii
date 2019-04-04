@@ -12,6 +12,7 @@
     $tmpStr = implode( $tmpArr );
     $tmpStr1 = sha1( $tmpStr );
     echo "xxxx";
+    echo $signature;
 //    print_r(" signature:{$signature} "  );
 //    print_r(" timestamp:{$timestamp} "  );
 //    print_r( " nonce : {$nonce}"  );

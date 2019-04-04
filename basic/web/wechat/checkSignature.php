@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/plain');
 $signature=$_GET["signature"];
 $timestamp=$_GET["timestamp"];
 $nonce=$_GET["nonce"];

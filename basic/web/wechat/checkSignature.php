@@ -11,9 +11,7 @@
     sort($tmpArr);
     $tmpStr = implode( $tmpArr );
     $tmpStr1 = sha1( $tmpStr );
-    echo "xxxx";
-    echo $signature;
-    echo "alert('{$signature}');window.reload();";
+    print_r($_GET);
 //    print_r(" signature:{$signature} "  );
 //    print_r(" timestamp:{$timestamp} "  );
 //    print_r( " nonce : {$nonce}"  );

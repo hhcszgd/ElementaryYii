@@ -27,6 +27,3 @@
 checkSignature();
 
 //http://101.200.45.131/wechat/checkSignature.php?signature=4fb62c5f431613dd83f5da66c849ca9e6b90aece&echostr=7019144854469720927&timestamp=1554362711&nonce=522026408
-
-ccbc11b090e30b7ae07f9c8e7411ce14b6489d76
-9debd7ae5180146185962bf9141bcf083c7c3cc4

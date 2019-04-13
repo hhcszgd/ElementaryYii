@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <button onclick="useageOfString()">useage of String</button>
+    </div>
+    <div>
+        <button onclick="useageOfDate()">useage of Date</button>
+    </div>
+    <div>
+        <button onclick="useageOfArray()">useage of Array</button>
+    </div>
+    <div>
+        <button onclick="useageOfMath()">useage of Math</button>
+    </div>
+    <div>
+        <button id="testTime" onclick="startTime()">计时器</button>
+    </div>
+</body>
+<script>
+    function useageOfString() {
+        var string = "what are you doing chubby fellow";
+        document.write("字符串长度:" + string.length + "<br/>");
+        document.write("are 的索引:" + string.indexOf("are") + "<br/>");
+        document.write("是否包含doing:" + string.match("doing") + "<br/>");
+        document.write("替换字符串you 为 we :" + string.replace("you" , "we") + "<br/>");
+        document.write("转换为大写:" + string.toUpperCase() + "<br/>");
+        document.write("转换为小写:" + string.toLowerCase() + "<br/>");
+        var wordArray = string.split(" ");
+        document.write("通过空格切割字符串为数组" + wordArray[3] + "<br/>");
+
+    }
+    function useageOfDate() {
+        var date = new Date();
+        document.write(date  + "<br/>");
+        document.write("获取年" + date.getFullYear()  + "<br/>");
+        document.write("获取月" + date.getMonth()  + "<br/>");
+        document.write("获取日" + date.getDay()  + "<br/>");
+        document.write("获取时" +  date.getHours()  + "<br/>");
+        document.write("获取分" + date.getMinutes()  + "<br/>");
+        document.write("获取秒" + date.getSeconds()  + "<br/>");
+        document.write("获取毫秒数" + date.getTime()  + "<br/>");
+        date.setFullYear(2019,4,10);
+        document.write(date  + "<br/>");
+        document.write("获取年" + date.getFullYear()  + "<br/>");
+        document.write("获取月" + date.getMonth()  + "<br/>");
+        document.write("获取日" + date.getDay()  + "<br/>");
+        document.write("获取时" +  date.getHours()  + "<br/>");
+        document.write("获取分" + date.getMinutes()  + "<br/>");
+        document.write("获取秒" + date.getSeconds()  + "<br/>");
+        document.write("获取毫秒数" + date.getTime()  + "<br/>");
+    }
+    function useageOfArray() {
+        //数组常用方法
+        //1concat() 合并数组
+        //sort() 排序
+        //push() 末尾追加元素
+        //reverse() 数组翻转
+        var  a = ["hello" , "world"];
+        var  b = ["Kity" , "Ruby"];
+        var c = a.concat(b);
+        document.write(c + "<br/>");
+        var d = ["ab" , "fg" , "tu" , "cd"];
+        d.sort(function (a , b ) {
+            return b>a;
+        });
+        document.write(d  + "<br/>");
+        a.push("ssss")//追加元素并返回数组元素个数
+        document.write(a  + "<br/>");
+        a.reverse();
+        document.write(a  + "<br/>");
+    }
+    function useageOfMath() {
+        //Math对象常用方法
+        //round() 四舍五入
+        //random() 返回0 ~ 1 之间的随机数
+        //max() 返回最高值
+        //min() 返回最低值
+        //abs 返回绝对值
+        document.write(Math.round(2.4)  + "<br/>");
+        document.write(Math.random()  + "<br/>");
+        document.write(Math.max(1,3,5,6,7,34,222)  + "<br/>");
+        document.write(Math.min(2,4,5,6,76)  + "<br/>");
+        document.write(Math.abs( -100 )  + "<br/>");
+
+    }
+
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkMinuteOrSecond(m);
+        s = checkMinuteOrSecond(s);
+        document.getElementById("testTime").innerHTML = h + ":" + m + ":" + s ;
+        window.setTimeout(function () {
+            startTime();
+        },500)
+    }
+    function checkMinuteOrSecond(i) {
+        if (i < 10){
+            i = "0" + i;
+        }
+        return i ;
+    }
+</script>
+</html>

@@ -197,7 +197,11 @@ class TestController extends Controller
 
 //        print_r($results);
     }
-
+    function actionTestSelect2(){
+        $model = new Test;
+        $one = $model->find()->one();
+        return $this->render("test" , array('aa' => $one));
+    }
     function actionTestDelete(){
         $models = Test::find()->where(['id' => 1])->all();
         if ($models){

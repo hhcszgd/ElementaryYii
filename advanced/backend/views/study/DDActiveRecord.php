@@ -95,6 +95,29 @@ AR提供了两种方法来创建DB查询 , 结果都是返回AR对象
         $sql = 'SELECT * FROM post where status=1';
         $posts = Post::findBySql($sql)->all();
 
+
+    2.3 数据操作CRUD
+        yii\db\ActiveRecord::insert()
+        yii\db\ActiveRecord::update()
+        yii\db\ActiveRecord::delete()
+        yii\db\ActiveRecord::save()   //save方法可代替insert和update方法
+
+        插入一条数据:
+        $customer = new Customer();
+        $customer->name = "James";
+        $customer->email = "James@sina.com";
+        $customer->save(); //等同于$customer->insert();
+
+        查找一条数据 略
+
+        修改一条记录
+        $customer = Customer::findOme($id);
+        $customer->email = "new@sina.com";
+        $customer->save(); 等同于$customer->update;
+
+        删除一条记录
+        $customer = Customer::findOme($id);
+        $customer->delete();
  */
 /*
 $model = Post::find()->where(['id'=>33])->one();

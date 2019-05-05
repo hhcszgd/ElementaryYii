@@ -52,13 +52,13 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'tags' => 'Tags',
-            'status' => 'Status',
-            'create_time' => 'Create Time',
-            'update_time' => 'Update Time',
-            'author_id' => 'Author ID',
+            'title' => '标题',
+            'content' => '内容',
+            'tags' => '标签',
+            'status' => '状态',
+            'create_time' => '创建时间',
+            'update_time' => '更新时间',
+            'author_id' => '作者',
         ];
     }
 
@@ -83,6 +83,8 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getStatus0()
     {
+        //设置连表  , hasOne()第一个参数是要连接的表对应的类名 , 第二个是 要连接的表的id字段 对应自己类的status字段(关联条件)
+        //返回文章状态类的对象
         return $this->hasOne(Poststatus::className(), ['id' => 'status']);
     }
 }

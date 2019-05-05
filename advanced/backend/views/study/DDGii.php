@@ -1,4 +1,5 @@
 <?php
+echo "hello world";
 /**
  * Created by PhpStorm.
  * User: wy
